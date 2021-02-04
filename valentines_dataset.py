@@ -12,6 +12,8 @@ class  ValentinesMessages(Dataset):
         self.index_to_word = {index: word for index,word in enumerate(self.unique_words)}
         self.words_to_index = {word: index for index,word in enumerate(self.unique_words)}
         self.word_indexes = [self.words_to_index[w] for w in self.words]
+        word_index = self.word_indexes[6]
+
     def load_dataset(self, dataset_path):
         def remove_bullets(valentines_message):
             start = valentines_message.split(' ')[0]
@@ -23,7 +25,6 @@ class  ValentinesMessages(Dataset):
         return dataset
 
     def load_words(self):
-        # preprocess? Remove stopwords
         words = self.dataset['message'].str.cat(sep=' ')
         return words.split(' ')
 
@@ -38,7 +39,3 @@ class  ValentinesMessages(Dataset):
             torch.tensor(self.word_indexes[idx:idx+self.sequence_length]),
             torch.tensor(self.word_indexes[idx+1:idx+self.sequence_length+1])
         )
-
-if  __name__ == '__main__':
-    dataset = ValentinesMessages(5)
-    print(dataset[5])
