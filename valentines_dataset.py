@@ -1,6 +1,7 @@
 from torch.utils.data import Dataset
 import torch
 import pandas  as pd
+import re
 
 class  ValentinesMessages(Dataset):
     def __init__(self, sequence_length, dataset_path='valentines_messages.csv'):

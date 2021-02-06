@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 if  __name__ == '__main__':
     all_quotes = []
     url_list = []
-    URLS = ['https://www.wishesquotes.com/valentines-day/valentines-day-messages',
+    urls = ['https://www.wishesquotes.com/valentines-day/valentines-day-messages',
             'https://www.wishesquotes.com/valentines-day/valentines-day-messages-for-her-girlfriend-wife',
             'https://www.wishesquotes.com/valentines-day/love-sms-messages',
             'https://www.wishesquotes.com/love/love-quotes-for-her',
@@ -33,7 +33,7 @@ if  __name__ == '__main__':
             'https://www.lovewishesquotes.com/sweet-good-morning-messages-for-him',
             'https://www.lovewishesquotes.com/best-compliments-for-girls-100-ways-to-make-a-woman-feel-special',
             'https://www.lovewishesquotes.com/flirty-messages-pick-up-lines-quotes-text-your-crush']
-    for url in URLS:
+    for url in urls:
         page = requests.get(url)
         soup = BeautifulSoup(page.content, 'html.parser')
         article = soup.find('article')
@@ -50,4 +50,4 @@ if  __name__ == '__main__':
 
     print(len(all_quotes))
     df = pd.DataFrame({'message': all_quotes, 'url': url_list})
-    df.to_csv('valentines_messages.csv')
+    df.to_csv('valentines_messages_2.csv')
